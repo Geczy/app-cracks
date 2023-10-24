@@ -1,10 +1,10 @@
-Package: com.ketodev.macrotrackerpremium
-Name: MacroTracker (Premium)
+Package: com.ketodev.macrofactorpremium
+Name: MacroFactor (Premium)
 Version: 1.0
 Section: Premium
 Icon: file:///Library/ketodev.IconRepo/Premium.png
 Description: Enable Premium Version
-Depiction: https://ketodev.com/bundle/com.ketodev.macrotrackerpremium
+Depiction: https://ketodev.com/bundle/com.ketodev.macrofactorpremium
 Homepage: https://ketodev.com/
 Architecture: iphoneos-arm
 Author: ketodev <info@ketodev.com>
