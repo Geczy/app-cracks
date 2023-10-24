@@ -1,0 +1,13 @@
+Package: com.ketodev.macrotrackerpremium
+Name: MacroTracker (Premium)
+Version: 1.0
+Section: Premium
+Icon: file:///Library/ketodev.IconRepo/Premium.png
+Description: Enable Premium Version
+Depiction: https://ketodev.com/bundle/com.ketodev.macrotrackerpremium
+Homepage: https://ketodev.com/
+Architecture: iphoneos-arm
+Author: ketodev <info@ketodev.com>
+Maintainer: ketodev <info@ketodev.com>
+Support: ketodev <info@ketodev.com>
+Depends: mobilesubstrate
