@@ -12,11 +12,11 @@
     @"request_date_ms": @1690942917283,
     @"subscriber": @{
         @"entitlements": @{
-            @"premium": @{
+            @"subscription": @{
                 @"expires_date": @"2099-02-18T07:52:54Z",
                 @"original_purchase_date": @"2020-02-11T07:52:55Z",
                 @"purchase_date": @"2020-02-11T07:52:54Z",
-                @"product_identifier": @"com.touchbyte.PhotoSync.PremiumLifetime"
+                @"product_identifier": @"com.sbs.diet.1m1199.1w0"
             }
         },
         @"first_seen": @"2023-07-27T12:47:03Z",
@@ -30,7 +30,12 @@
         @"other_purchases": @{
         },
         @"subscriptions": @{
-            @"com.touchbyte.PhotoSync.PremiumLifetime": @{
+            @"com.sbs.diet.1m1199.1w0": @{
+                @"expires_date": @"2099-02-18T07:52:54Z",
+                @"original_purchase_date": @"2020-02-11T07:52:55Z",
+                @"purchase_date": @"2020-02-11T07:52:54Z"
+            },
+            @"com.sbs.diet.1y0599.2w0": @{
                 @"expires_date": @"2099-02-18T07:52:54Z",
                 @"original_purchase_date": @"2020-02-11T07:52:55Z",
                 @"purchase_date": @"2020-02-11T07:52:54Z"
