@@ -16,10 +16,6 @@
             dateComponents.year = 1;
             NSDate *expiresDate = [calendar dateByAddingComponents:dateComponents toDate:currentDate options:0];
 
-            // Set the purchase_date to one year in the past
-            dateComponents.year = -1;
-            NSDate *purchaseDate = [calendar dateByAddingComponents:dateComponents toDate:currentDate options:0];
-
             NSDictionary *dict = @{
                 @"request_date": [dateFormatter stringFromDate:currentDate],
                 @"request_date_ms": @([currentDate timeIntervalSince1970] * 1000),
@@ -27,29 +23,29 @@
                     @"entitlements": @{
                         @"subscription": @{
                             @"expires_date": [dateFormatter stringFromDate:expiresDate],
-                            @"original_purchase_date": [dateFormatter stringFromDate:purchaseDate],
-                            @"purchase_date": [dateFormatter stringFromDate:purchaseDate], // Set the purchase date to one year in the past
+                            @"original_purchase_date": [dateFormatter stringFromDate:currentDate],
+                            @"purchase_date": [dateFormatter stringFromDate:currentDate],
                             @"product_identifier": @"com.sbs.diet.1m1199.1w0"
                         }
                     },
-                    @"first_seen": [dateFormatter stringFromDate:purchaseDate],
+                    @"first_seen": [dateFormatter stringFromDate:currentDate],
                     @"last_seen": [dateFormatter stringFromDate:currentDate],
                     @"management_url": [NSNull null],
                     @"non_subscriptions": [NSNull null],
                     @"original_app_user_id": @"70B24288-83C4-4035-B001-573285B21AE2",
                     @"original_application_version": @"3",
-                    @"original_purchase_date": [dateFormatter stringFromDate:purchaseDate],
+                    @"original_purchase_date": [dateFormatter stringFromDate:currentDate],
                     @"other_purchases": [NSNull null],
                     @"subscriptions": @{
                         @"com.sbs.diet.1m1199.1w0": @{
                             @"expires_date": [dateFormatter stringFromDate:expiresDate],
-                            @"original_purchase_date": [dateFormatter stringFromDate:purchaseDate],
-                            @"purchase_date": [dateFormatter stringFromDate:purchaseDate] // Set the purchase date to one year in the past
+                            @"original_purchase_date": [dateFormatter stringFromDate:currentDate],
+                            @"purchase_date": [dateFormatter stringFromDate:currentDate]
                         },
                         @"com.sbs.diet.1y0599.2w0": @{
                             @"expires_date": [dateFormatter stringFromDate:expiresDate],
-                            @"original_purchase_date": [dateFormatter stringFromDate:purchaseDate],
-                            @"purchase_date": [dateFormatter stringFromDate:purchaseDate] // Set the purchase date to one year in the past
+                            @"original_purchase_date": [dateFormatter stringFromDate:currentDate],
+                            @"purchase_date": [dateFormatter stringFromDate:currentDate]
                         }
                     },
                     @"entitlement": [NSNull null]
