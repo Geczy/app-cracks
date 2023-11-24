@@ -1,36 +1,32 @@
 #import <UIKit/UIKit.h>
 
-
-#import <UIKit/UIKit.h>
-
-%hook UIScrollView
-
 // Variables to store the initial scrolling speed and direction
 static CGFloat initialScrollSpeedX = 0.0;
 static CGFloat initialScrollSpeedY = 0.0;
 
-@interface CustomScrollView : UIScrollView
+// Category on UIScrollView to add the custom method
+@interface UIScrollView (ContinuousScroll)
 
-- (void)startContinuousScroll:(UIScrollView *)scrollView;
+- (void)startContinuousScroll;
 
 @end
 
-@implementation CustomScrollView
+@implementation UIScrollView (ContinuousScroll)
 
 // Custom method to handle continuous scrolling
-- (void)startContinuousScroll:(UIScrollView *)scrollView {
+- (void)startContinuousScroll {
     if (initialScrollSpeedX != 0 || initialScrollSpeedY != 0) {
-        CGPoint offset = scrollView.contentOffset;
+        CGPoint offset = self.contentOffset;
         offset.x += initialScrollSpeedX / 60.0; // Adjust for horizontal scroll speed
         offset.y += initialScrollSpeedY / 60.0; // Adjust for vertical scroll speed
         [UIView animateWithDuration:1.0/60.0
                               delay:0.0
                             options:UIViewAnimationOptionCurveLinear | UIViewAnimationOptionAllowUserInteraction
                          animations:^{
-                             [scrollView setContentOffset:offset];
+                             [self setContentOffset:offset];
                          } completion:^(BOOL finished) {
                              if (finished && (initialScrollSpeedX != 0 || initialScrollSpeedY != 0)) {
-                                 [self startContinuousScroll:scrollView];
+                                 [self startContinuousScroll];
                              }
                          }];
     }
@@ -38,27 +34,22 @@ static CGFloat initialScrollSpeedY = 0.0;
 
 @end
 
-// New method for starting continuous scroll on UIScrollView
-%new
-- (void)startContinuousScrollWithUIScrollView:(UIScrollView *)scrollView {
-    CustomScrollView *customScrollView = (CustomScrollView *)scrollView;
-    [customScrollView startContinuousScroll:scrollView];
-}
+%hook UIScrollView
 
 // Override the method that handles the end of dragging
-- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
+- (void)scrollViewDidEndDragging:(BOOL)decelerate {
     if (!decelerate) {
-        CGPoint velocity = [scrollView.panGestureRecognizer velocityInView:scrollView];
+        CGPoint velocity = [self.panGestureRecognizer velocityInView:self];
         initialScrollSpeedX = velocity.x;
         initialScrollSpeedY = velocity.y;
-        [self startContinuousScrollWithUIScrollView:scrollView];
+        [self startContinuousScroll];
     }
 }
 
 // Override the method that handles deceleration
-- (void)scrollViewWillBeginDecelerating:(UIScrollView *)scrollView {
-    [scrollView setContentOffset:scrollView.contentOffset animated:NO];
-    [self startContinuousScrollWithUIScrollView:scrollView];
+- (void)scrollViewWillBeginDecelerating {
+    [self setContentOffset:self.contentOffset animated:NO];
+    [self startContinuousScroll];
 }
 
 // Override touches to handle interruption
@@ -69,7 +60,7 @@ static CGFloat initialScrollSpeedY = 0.0;
 }
 
 // Override the method that handles the start of scrolling
-- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
+- (void)scrollViewWillBeginDragging {
     initialScrollSpeedX = 0.0; // Reset horizontal scrolling speed
     initialScrollSpeedY = 0.0; // Reset vertical scrolling speed
 }
